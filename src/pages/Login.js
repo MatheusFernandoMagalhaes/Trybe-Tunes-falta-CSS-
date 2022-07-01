@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from '../imgs/LOGO_POSITIVA.png';
-import '../style/Login.css';
+// import '../style/Login.css';
 
 export default class Login extends React.Component {
   render() {
