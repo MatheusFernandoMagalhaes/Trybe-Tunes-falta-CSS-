@@ -1,6 +1,7 @@
 import React from 'react';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
+import { Link } from 'react-router-dom';
 
 export default class Header extends React.Component {
   state = {
@@ -29,6 +30,9 @@ export default class Header extends React.Component {
       <header data-testid="header-component">
         { isLoading && <Loading /> }
         <h2>Header</h2>
+        <Link to="/search" data-testid="link-to-search">Search</Link>
+        <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
+        <Link to="/profile" data-testid="link-to-profile">Profile</Link>
         <span data-testid="header-user-name">{ userName }</span>
       </header>
     );
