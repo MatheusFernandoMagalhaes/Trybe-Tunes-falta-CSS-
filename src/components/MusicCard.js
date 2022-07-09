@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 export default class MusicCard extends React.Component {
   render() {
-    const { music } = this.props;
+    const { trackName, previewUrl } = this.props;
     return (
       <div>
-        <p>{ music.trackName }</p>
-        <audio data-testid="audio-component" src={ music.previewUrl } controls>
+        <p>{ trackName }</p>
+        <audio data-testid="audio-component" src={ previewUrl } controls>
           <track kind="captions" />
           O seu navegador não suporta o elemento
           {' '}
@@ -21,5 +21,6 @@ export default class MusicCard extends React.Component {
 }
 
 MusicCard.propTypes = {
-  music: PropTypes.objectOf.isRequired,
+  trackName: PropTypes.string.isRequired,
+  previewUrl: PropTypes.string.isRequired,
 };

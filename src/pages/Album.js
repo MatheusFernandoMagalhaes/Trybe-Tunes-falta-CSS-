@@ -42,7 +42,11 @@ export default class Album extends React.Component {
             <div>
               {resultsApi.map((music, index) => (
                 index !== 0 && (
-                  <MusicCard key={ music.trackId } music={ music } />
+                  <MusicCard
+                    key={ music.trackId }
+                    trackName={ music.trackName }
+                    previewUrl={ music.previewUrl }
+                  />
                 )
               ))}
             </div>
