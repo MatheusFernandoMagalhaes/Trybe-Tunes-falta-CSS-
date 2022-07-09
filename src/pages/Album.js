@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Header from '../components/Header';
+import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
@@ -29,7 +29,8 @@ export default class Album extends React.Component {
   render() {
     const { resultsApi, isLoading } = this.state;
     return (
-      <div data-testid="page-album" className='musics-content'>
+      <div data-testid="page-album" className="musics-content">
+        <Header />
         { isLoading ? <Loading /> : (
           <>
             <div>
