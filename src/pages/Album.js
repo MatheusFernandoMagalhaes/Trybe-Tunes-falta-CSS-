@@ -19,7 +19,6 @@ export default class Album extends React.Component {
   getSongs = async () => {
     const { match: { params: { id } } } = this.props;
     const musics = await getMusics(id);
-    console.log(musics);
     this.setState({
       resultsApi: musics,
       isLoading: false,
@@ -35,6 +34,10 @@ export default class Album extends React.Component {
           <>
             <div>
               <p data-testid="artist-name">{resultsApi[0].artistName}</p>
+              <img
+                src={ resultsApi[0].artworkUrl100 }
+                alt={ resultsApi[0].collectionCensoredName }
+              />
               <p data-testid="album-name">
                 {resultsApi[0].collectionName}
               </p>
@@ -44,8 +47,10 @@ export default class Album extends React.Component {
                 index !== 0 && (
                   <MusicCard
                     key={ music.trackId }
+                    music={ music }
                     trackName={ music.trackName }
                     previewUrl={ music.previewUrl }
+                    trackId={ music.trackId }
                   />
                 )
               ))}
