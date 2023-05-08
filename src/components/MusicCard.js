@@ -1,11 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import React from 'react';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 export default class MusicCard extends React.Component {
   state = ({
-    addSongIsLoading: false,
+    isLoading: false,
     isChecked: false,
   })
 
@@ -20,24 +20,37 @@ export default class MusicCard extends React.Component {
     this.setState({ isChecked: boolean });
   }
 
-  addSongToFavoriteSongs = async ({ target: { checked, name } }) => {
+  handleChange = async () => {
+    const { isChecked } = this.state;
+    if (isChecked === true) {
+      this.setState({ isChecked: false });
+      this.removeSong();
+    } else {
+      this.setState({ isChecked: true });
+      this.addSong();
+    }
+  }
+
+  addSong = async () => {
     const { music } = this.props;
-    this.setState({
-      addSongIsLoading: true,
-      [name]: checked,
-    });
+    this.setState({ isLoading: true });
     await addSong(music);
-    this.setState({
-      addSongIsLoading: false,
-    });
+    this.setState({ isLoading: false });
+  }
+
+  removeSong = async () => {
+    const { music } = this.props;
+    this.setState({ isLoading: true });
+    await removeSong(music);
+    this.setState({ isLoading: false });
   }
 
   render() {
     const { trackName, previewUrl, trackId } = this.props;
-    const { addSongIsLoading, isChecked } = this.state;
+    const { isLoading, isChecked } = this.state;
     return (
       <div>
-        { addSongIsLoading && <Loading /> }
+        { isLoading && <Loading /> }
         <div>
           <p>{ trackName }</p>
           <audio data-testid="audio-component" src={ previewUrl } controls>
@@ -56,7 +69,7 @@ export default class MusicCard extends React.Component {
               type="checkbox"
               name="isChecked"
               id={ trackId }
-              onClick={ this.addSongToFavoriteSongs }
+              onChange={ this.handleChange }
               checked={ isChecked }
             />
           </label>
