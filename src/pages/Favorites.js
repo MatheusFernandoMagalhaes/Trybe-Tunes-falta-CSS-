@@ -6,7 +6,7 @@ import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 export default class Favorites extends React.Component {
   state = ({
-    resultsApi: [],
+    favoriteSongs: [],
     isLoading: false,
   })
 
@@ -17,22 +17,23 @@ export default class Favorites extends React.Component {
   getFavoriteSongs = async () => {
     this.setState({ isLoading: true });
     const musics = await getFavoriteSongs();
-    this.setState({ isLoading: false, resultsApi: musics });
+    this.setState({ isLoading: false, favoriteSongs: musics });
   }
 
   render() {
-    const { isLoading, resultsApi } = this.state;
+    const { isLoading, favoriteSongs } = this.state;
     return (
       <div data-testid="page-favorites">
         <Header />
         <p>Favorites</p>
-        { isLoading ? <Loading /> : (resultsApi.map((music) => (
+        { isLoading ? <Loading /> : (favoriteSongs.map((music) => (
           <MusicCard
             key={ music.trackId }
             music={ music }
             trackName={ music.trackName }
             previewUrl={ music.previewUrl }
-            getFavoriteSongsResult={ this.getFavoriteSongs }
+            removeSong="removeSong"
+            getFavoriteSongsList={ this.getFavoriteSongs }
           />
         )))}
       </div>

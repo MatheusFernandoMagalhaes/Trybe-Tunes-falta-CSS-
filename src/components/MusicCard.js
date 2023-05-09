@@ -21,15 +21,17 @@ export default class MusicCard extends React.Component {
   }
 
   handleChange = async () => {
-    const { getFavoriteSongsResult } = this.props;
+    const { getFavoriteSongsList } = this.props;
     const { isChecked } = this.state;
     if (isChecked === true) {
       this.setState({ isChecked: false });
       this.removeSong();
-      getFavoriteSongsResult();
     } else {
       this.setState({ isChecked: true });
       this.addSong();
+    }
+    if (getFavoriteSongsList) {
+      getFavoriteSongsList();
     }
   }
 
@@ -86,5 +88,9 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.string.isRequired,
   music: PropTypes.objectOf(PropTypes.object).isRequired,
-  getFavoriteSongsResult: PropTypes.func.isRequired,
+  getFavoriteSongsList: PropTypes.func,
+};
+
+MusicCard.defaultProps = {
+  getFavoriteSongsList: null,
 };

@@ -1,9 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import Header from '../components/Header';
-import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
+import getMusics from '../services/musicsAPI';
 import '../style/Album.css';
 
 export default class Album extends React.Component {
@@ -51,6 +51,7 @@ export default class Album extends React.Component {
                     trackName={ music.trackName }
                     previewUrl={ music.previewUrl }
                     trackId={ music.trackId }
+                    getFavoriteSongsList={ this.getFavoriteSongs }
                   />
                 )
               ))}
