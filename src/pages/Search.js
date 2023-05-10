@@ -56,6 +56,7 @@ export default class Search extends React.Component {
               data-testid="search-artist-input"
               name="musicOrArtist"
               value={ musicOrArtist }
+              placeholder="Digite o nome da música ou artista"
               onChange={ this.onInputChange }
             />
             <button

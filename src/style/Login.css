@@ -1,8 +1,8 @@
 #login-content {
   display: flex;
-  width: 100%;
   height: 100%;
   justify-content: center;
+  width: 100%;
 }
 
 #form-content {
@@ -15,16 +15,16 @@ img{
 }
 
 input {
-  width: 70%;
-  height: 100%;
-  border: 4px solid rgba(18, 18, 18,1);
+  border: 4px solid rgba(18, 18, 18, 1);
+  box-shadow: 4px 4px 8px rgba(18, 18, 18, 1);
   font-size: 18px;
+  height: 100%;
   padding-left: 5px;
-  box-shadow: 4px 4px 8px rgba(18, 18, 18,1);
+  width: 70%;
 }
 button {
-  box-shadow: 4px 4px 8px rgba(18, 18, 18,1);
-  border: 4px solid rgba(18, 18, 18,1);
+  background-color: #2fc18c;
+  border: 4px solid rgba(18, 18, 18, 1);
+  box-shadow: 4px 4px 8px rgba(18, 18, 18, 1);
   width: 75px;
-  background-color: #2FC18C;
 }
