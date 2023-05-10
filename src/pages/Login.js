@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import Loading from '../components/Loading';
 import Logo from '../imgs/LOGO_POSITIVA.png';
 import { createUser } from '../services/userAPI';
-import Loading from '../components/Loading';
-// import '../style/Login.css';
+import '../style/Login.css';
 
 export default class Login extends React.Component {
   constructor() {
@@ -42,7 +42,7 @@ export default class Login extends React.Component {
     return (
       <div data-testid="page-login" id="login-content">
         { isLoading ? <Loading /> : (
-          <div>
+          <div id="image-input-login">
             <img src={ Logo } alt="Logo Trybe Tunes" />
             <form id="form-content">
               <input
@@ -50,6 +50,7 @@ export default class Login extends React.Component {
                 data-testid="login-name-input"
                 type="text"
                 id="input-login"
+                placeholder="Digite seu nome de usuário"
                 onChange={ this.onInputChange }
               />
               <button
