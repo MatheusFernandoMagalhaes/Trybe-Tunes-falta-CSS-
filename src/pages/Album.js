@@ -28,21 +28,21 @@ export default class Album extends React.Component {
   render() {
     const { resultsApi, isLoading } = this.state;
     return (
-      <div data-testid="page-album" className="musics-content">
+      <div data-testid="page-album" id="musics-container">
         <Header />
         { isLoading ? <Loading /> : (
-          <>
+          <div id="musics-content">
             <div>
-              <p data-testid="artist-name">{resultsApi[0].artistName}</p>
+              <h1 data-testid="artist-name">{resultsApi[0].artistName}</h1>
               <img
                 src={ resultsApi[0].artworkUrl100 }
                 alt={ resultsApi[0].collectionCensoredName }
               />
-              <p data-testid="album-name">
+              <h2 data-testid="album-name">
                 {resultsApi[0].collectionName}
-              </p>
+              </h2>
             </div>
-            <div>
+            <div id="audios-container">
               {resultsApi.map((music, index) => (
                 index !== 0 && (
                   <MusicCard
@@ -56,7 +56,7 @@ export default class Album extends React.Component {
                 )
               ))}
             </div>
-          </>
+          </div>
         )}
       </div>
     );

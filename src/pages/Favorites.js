@@ -25,7 +25,7 @@ export default class Favorites extends React.Component {
     return (
       <div data-testid="page-favorites">
         <Header />
-        <p>Favorites</p>
+        <h1>Favorites</h1>
         { isLoading ? <Loading /> : (favoriteSongs.map((music) => (
           <MusicCard
             key={ music.trackId }

@@ -1,0 +1,19 @@
+#music-card-content{
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  box-shadow: 2px 2px 2px 5px rgba(18, 18, 18, 1);
+}
+
+#music-card-content p{
+  color: white;
+}
+#music-card-content label{
+  color: white;
+}
+
+#music-card-content:hover{ 
+  background:grey;
+  border-radius: 10px;
+}
