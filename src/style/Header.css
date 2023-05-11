@@ -4,6 +4,19 @@
   justify-content: space-evenly;
 }
 
+#header-container a {
+  font-size: 20px;
+  text-decoration: none;
+
+}
+
+#header-container a:hover{
+  background-color: #2fc18c;
+  color: white;
+  text-decoration: none;
+
+}
+
 a:link {
   font-size: 20px;
   text-decoration: none;
@@ -13,11 +26,7 @@ a{
   color: white;
 }
 
-a:hover{
-  background-color: #2fc18c;
-  color: white;
-  text-decoration: none;
-}
+
 
 span {
   color: white;
