@@ -1,0 +1,17 @@
+p{
+  color: white;
+}
+input{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#user-image{
+  width: 200px;
+  height: 200px;
+
+}
+#submit-button{
+  display: block;
+  height: 40px;
+}

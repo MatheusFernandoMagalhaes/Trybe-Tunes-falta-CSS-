@@ -3,6 +3,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
+import '../style/ProfileEdit.css';
 
 export default class ProfileEdit extends React.Component {
   state = {
@@ -10,7 +11,6 @@ export default class ProfileEdit extends React.Component {
     name: '',
     email: '',
     description: '',
-    image: '',
     validateButton: true,
   }
 
@@ -25,10 +25,25 @@ export default class ProfileEdit extends React.Component {
       isLoading: false,
       name: user.name,
       email: user.email,
+      image: localStorage.getItem('image'),
       description: user.description,
-      image: user.image,
     });
   }
+
+  setImage = async ({ target: { files } }) => {
+    const base64 = await this.toBase64(files[0]);
+    this.setState({ image: base64 });
+    localStorage.setItem('image', base64);
+  }
+
+  toBase64 = (data) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    if (data) {
+      reader.readAsDataURL(data);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (err) => reject(err);
+    }
+  })
 
   updateUser = async (event) => {
     event.preventDefault();
@@ -60,23 +75,31 @@ export default class ProfileEdit extends React.Component {
       <div data-testid="page-profile-edit">
         <Header />
         { isLoading ? <Loading /> : null}
-        <p>ProfileEdit</p>
+        <h1>ProfileEdit</h1>
         <section>
           <form>
             <label htmlFor="image">
-              <p>Image</p>
+              <p>Imagem</p>
+              <br />
+              {image ? <img
+                id="user-image"
+                src={ image }
+                alt={ image }
+              />
+                : <img src="https://www.gov.br/cdn/sso-status-bar/src/image/user.png" alt="Imagem de usuário" />}
+              <br />
+              <br />
               <input
-                type="text"
+                type="file"
+                accept="image/*"
                 name="image"
                 id="image"
                 data-testid="edit-input-image"
-                required
-                value={ image }
-                onChange={ this.handleChange }
+                onChange={ this.setImage }
               />
             </label>
             <label htmlFor="email">
-              <p>email</p>
+              <p>Email:</p>
               <input
                 type="text"
                 name="email"
@@ -84,11 +107,12 @@ export default class ProfileEdit extends React.Component {
                 data-testid="edit-input-email"
                 required
                 value={ email }
+                placeholder="Digite seu email"
                 onChange={ this.handleChange }
               />
             </label>
             <label htmlFor="name">
-              <p>name</p>
+              <p>Nome:</p>
               <input
                 type="text"
                 name="name"
@@ -96,11 +120,12 @@ export default class ProfileEdit extends React.Component {
                 data-testid="edit-input-name"
                 required
                 value={ name }
+                placeholder="Digite seu nome"
                 onChange={ this.handleChange }
               />
             </label>
             <label htmlFor="description">
-              <p>description</p>
+              <p>Descrição:</p>
               <input
                 type="text"
                 name="description"
@@ -108,11 +133,13 @@ export default class ProfileEdit extends React.Component {
                 data-testid="edit-input-description"
                 required
                 value={ description }
+                placeholder="Digite sua descrição"
                 onChange={ this.handleChange }
               />
             </label>
             <button
               type="submit"
+              id="submit-button"
               data-testid="edit-button-save"
               disabled={ validateButton }
               onClick={ this.updateUser }
