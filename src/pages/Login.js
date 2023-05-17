@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Loading from '../components/Loading';
-import Logo from '../imgs/LOGO_POSITIVA.png';
+import Logo from '../imgs/logo.png';
 import { createUser } from '../services/userAPI';
 import '../style/Login.css';
 
@@ -40,20 +40,24 @@ export default class Login extends React.Component {
   render() {
     const { userName, disabled, isLoading, logged } = this.state;
     return (
-      <div data-testid="page-login" id="login-content">
+      <div
+        data-testid="page-login"
+        id="login-content"
+      >
         { isLoading ? <Loading /> : (
           <div id="image-input-login">
-            <img src={ Logo } alt="Logo Trybe Tunes" />
-            <form id="form-content">
+            <div id="teste">
+              <img id="logo" src={ Logo } alt="Logo Trybe Tunes" />
               <input
                 name={ userName }
                 data-testid="login-name-input"
                 type="text"
                 id="input-login"
-                placeholder="Digite seu nome de usuário"
+                placeholder="Qual é o seu nome?"
                 onChange={ this.onInputChange }
               />
               <button
+                id="login-button"
                 data-testid="login-submit-button"
                 type="button"
                 disabled={ disabled }
@@ -61,7 +65,7 @@ export default class Login extends React.Component {
               >
                 Entrar
               </button>
-            </form>
+            </div>
           </div>
         )}
         { logged && <Redirect to="/search" /> }
